@@ -1,10 +1,9 @@
-# test
+## Guide
 
 > A Vue.js project
 
-## Build Setup
+## Clone this repo and setup project
 
-``` bash
 # install dependencies
 npm install
 

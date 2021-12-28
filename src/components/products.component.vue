@@ -7,12 +7,12 @@
         </div>
         <div class="col-lg-6">
           <div class="input-group">
-            <input type="text" class="form-control" />
+            <input type="text" v-model="searchTxt" class="form-control" />
             <span class="input-group-btn">
               <button
-                on-click="search(txt.value)"
                 class="btn btn-default"
                 type="button"
+                v-on:click="handSearch()"
               >
                 Go!
               </button>
@@ -32,24 +32,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(product, index) in products" v-bind:key="product.id">
-            <th scope="row">{{ index + 1 }}</th>
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>
-              <router-link
-                :to="{ name: 'products.edit', params: { id: product.id } }"
-                class="btn btn-info"
-                >Edit</router-link
-              >
-              |
-              <router-link
-                :to="{ name: 'products.delete', params: { id: product.id } }"
-                class="btn btn-danger"
-                >Delete</router-link
-              >
-            </td>
-          </tr>
+          <ProductItemComponent v-for="product in products" v-bind:key="product.id" v-bind:product="product" v-on:click-search="handleSearchTxt($event)"></ProductItemComponent>
         </tbody>
       </table>
     </div>
@@ -58,10 +41,12 @@
 
 <script>
 import ProductService from './../services/product.service'
+import ProductItemComponent from './product-item.component'
 export default {
   name: 'ProductsComponent',
   data () {
     return {
+      searchTxt: '',
       products: []
     }
   },
@@ -70,10 +55,19 @@ export default {
       ProductService.getAll().then((response) => {
         this.products = response.data
       })
+    },
+    handSearch () {
+      ProductService.search(this.searchTxt).then((response) => {
+        this.products = response.data
+      })
+    },
+    handleSearchTxt (name) {
+      this.searchTxt = name
     }
   },
   mounted () {
     this.getAll()
-  }
+  },
+  components: { ProductItemComponent }
 }
 </script>
