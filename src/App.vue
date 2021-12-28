@@ -14,7 +14,29 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  beforeCreate () {
+    console.log('before create')
+  },
+  created () {
+    console.log('created')
+  },
+  beforeMount () {
+    console.log('beforeMount')
+  },
+  mounted () {
+    console.log('mounted')
+  },
+  beforeUpdate () {
+    console.log('beforeUpdate')
+  },
+  beforeDestroy () {
+    console.log('beforeDestroy')
+  },
+  destroyed () {
+    console.log('destroyed')
+  }
+
 }
 </script>
 
