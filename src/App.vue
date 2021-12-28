@@ -15,6 +15,11 @@
 <script>
 export default {
   name: 'App',
+  props: [],
+  data () {
+    return {}
+  },
+  methods: {},
   beforeCreate () {
     console.log('before create')
   },
@@ -36,7 +41,6 @@ export default {
   destroyed () {
     console.log('destroyed')
   }
-
 }
 </script>
 
