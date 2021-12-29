@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <h1> {{ msg }} </h1>
+    <h1 v-html="msg"></h1>
+    <a v-bind:href="link">Go to</a>
+    <button type="button" class="btn" v-bind:class="{ 'btn-primary': true }" v-on:click="handleShowForm()" >Show Form</button>
+    <input v-model="msg" placeholder="edit me">
+    <p v-if="isShowForm"> THis is form </p>
     <ul class="nav nav-pills">
       <li>
         <router-link to="/" class="nav-link">Home</router-link>
@@ -17,9 +23,21 @@ export default {
   name: 'App',
   props: [],
   data () {
-    return {}
+    return {
+      isShowForm: false,
+      link: 'google.com',
+      msg: '<strong>Xin chao vuejs</strong>',
+      products: []
+    }
   },
-  methods: {},
+  methods: {
+    handleSubmit () {
+      alert('submit')
+    },
+    handleShowForm () {
+      this.isShowForm = true
+    }
+  },
   beforeCreate () {
     console.log('before create')
   },
