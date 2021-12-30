@@ -23,5 +23,5 @@
 - https://github.com/taitamfc/Advanced-VueJs/blob/master/src/components/products.component.vue
 
 ### Bước 7...
-- Làm tương tự bước 6 cho các c
+- Làm tương tự bước 6 cho các components khác
 
